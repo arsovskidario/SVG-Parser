@@ -1,10 +1,55 @@
 #include"UserInterface.h"
 
-void UserInterface::open(std::string address)
+UserInterface::UserInterface()
 {
-	if(address.length()==0)
-	{
-		std::cout << "You entered an incorrect path \n";
+}
+
+void UserInterface::readCommand(std::string command)
+{
+	if (command==getOpen()) {//open
+		std::string addressInput = command.substr(command.find_first_of(" \t") + 1);
+		parserObject.open(addressInput);
 	}
-	std::regex	exp("^(?:[a-zA-Z]\:|\\\\[\w\.]+\\[\w.$]+)\\(?:[\w]+\\)*\w([\w.])+$");
+	if (command==getClose())
+	{
+		parserObject.close();
+	}
+	if (command==getSave())
+	{
+		parserObject.save();
+	}
+	if (command==getSaveAs())
+	{
+		parserObject.saveAs();
+	}
+	if (command==getExit())
+	{
+		parserObject.exit();
+	}
+
+}
+
+std::string UserInterface::getClose() const
+{
+	return close;
+}
+
+std::string UserInterface::getOpen() const
+{
+	return open;
+}
+
+std::string UserInterface::getSave() const
+{
+	return save;
+}
+
+std::string UserInterface::getSaveAs() const
+{
+	return saveAs;
+}
+
+std::string UserInterface::getExit() const
+{
+	return exit;
 }
