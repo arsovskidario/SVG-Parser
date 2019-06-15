@@ -9,12 +9,12 @@ int main()
 	UserInterface userObject;
 	while(true)
 	{
-		std::cin >> userInput;
+		std::getline(std::cin,userInput);
 		userObject.readCommand(userInput);
 	}
 }
 void listCommands()
 {
 	std::cout << "These are the commands available to you :\n";
-	std::cout << " open \n close \n save \n saveAs\n  exit\n";
+	std::cout << " open \n close \n save \n saveAs\n exit\n";
 }

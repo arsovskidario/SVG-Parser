@@ -6,9 +6,9 @@ class UserInterface
 {
 private:
 	std::string close = "close";
-	std::string open = "open";
+	std::string open = "open ";
 	std::string save = "save";
-	std::string saveAs = "saveAs";
+	std::string saveAs = "saveAs ";
 	std::string exit = "exit";
 	CommandParser parserObject;
 public:

@@ -3,11 +3,21 @@
 UserInterface::UserInterface()
 {
 }
-
+//check the read for the address
 void UserInterface::readCommand(std::string command)
 {
-	if (command==getOpen()) {//open
-		std::string addressInput = command.substr(command.find_first_of(" \t") + 1);
+	if (command.empty())
+		std::cout << "Enter a command please ! \n";
+	if (command.substr(0, 5) == getOpen()) {//open
+		std::vector<std::string> commandTokens;
+		std::string buf; //Have a buffer 
+		std::stringstream ss(command);//Insert the commands into a stream
+		while(ss>>buf)
+		{
+			commandTokens.push_back(buf);
+		}
+		const std::string addressInput = commandTokens[1]; //skips open and gets address
+		
 		parserObject.open(addressInput);
 	}
 	if (command==getClose())

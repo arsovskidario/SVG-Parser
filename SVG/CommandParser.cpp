@@ -1,21 +1,38 @@
 #include"CommandParser.h"
+#include<cstring>
 
-void CommandParser::open(std::string address)
+void CommandParser::setPathAddress(const std::string newPathAddress)
 {
-	std::regex	exp("^(?:[a-zA-Z]\:|\\\\[\w\.]+\\[\w.$]+)\\(?:[\w]+\\)*\w([\w.])+$");
-	std::smatch matchPath;
-	bool checkBool;
-	checkBool=std::regex_search(address, exp);
-	//Make variable that stores true or false of parse search
-	if(!checkBool || address.length()==0)
+	this->pathAddress = newPathAddress;
+}
+
+std::string CommandParser::getPathAddress() const
+{
+	return this->pathAddress;
+}
+
+void CommandParser::open(const std::string address)
+{
+	inFile.open(address);
+
+	//fileInput.open(address);
+	if(!inFile.fail())
 	{
-		std::cout << "You entered an incorrect path \n";
+		throw std::runtime_error("Invalid path! \n");
 	}
 	else
 	{
-		std::cout << "Successfully opened " << address << std::endl;
-		inFile.open("address");												
+		setPathAddress(address);
+		std::cout << "Successfully opened the file ! \n";
 	}
+	/*if (fileInput.fail()){
+		std::cerr << "Invalid path ! \n";
+	}
+	else {
+		setPathAddress(address);
+		std::cout << "Successfully opened the file ! \n";
+	}
+	inFile.open("address");*/
 }
 
 void CommandParser::close()
@@ -30,15 +47,41 @@ void CommandParser::close()
 
 void CommandParser::save()
 {
-	std::cout << "Successfully saved file ! \n";
-	// need to add items than it saves 
+	if (inFile.is_open())
+	{
+		//need to store stuff into a file first 
+		std::ofstream saveFile(getPathAddress()); //save file to same directory
+		std::cout << "Successfully saved another file \n";
+	}
+	else
+	{
+		std::cout << "You didn't open a file ! \n";
+	}
 }
 
 void CommandParser::saveAs()
 {
-	//need to save to a given location 
-	std::cout << "Successfully saved another file \n";
-}
+	if(inFile.is_open())
+	{
+		std::string inputPath;
+		std::cout << "Enter the path you wish to save your file : \n";
+		std::getline(std::cin, inputPath);
+		std::ofstream saveFile(inputPath);
+		  if(saveFile.fail())
+		  {
+			  std::cerr << "You entered a invalid path! \n";
+		  }
+		  else 
+		  {
+			  std::cout << "Successfully saved another file \n";
+		  }
+
+	}
+	else
+	{
+		std::cout << "You didn't open a file ! \n";
+	}
+ }
 
 void CommandParser::exit()
 {
