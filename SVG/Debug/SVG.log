@@ -1,2 +1,6 @@
-﻿  CommandParser.cpp
+﻿  CircleSVG.cpp
+  CommandParser.cpp
+  Main.cpp
+  UserInterface.cpp
+  Generating Code...
   SVG.vcxproj -> C:\Dev\Object Oriented Programming\Project\SVG\Debug\SVG.exe

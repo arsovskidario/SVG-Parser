@@ -1,9 +1,61 @@
 #include"CommandParser.h"
 #include<cstring>
+#include "CircleSVG.h"
 
 void CommandParser::setPathAddress(const std::string newPathAddress)
 {
 	this->pathAddress = newPathAddress;
+}
+
+void CommandParser::parseFile()
+{
+	if(inFile.is_open())
+	{
+		std::string line;
+		while(std::getline(inFile,line))
+		{
+			checkFigure(line);
+		}
+	}
+}
+
+void CommandParser::checkFigure(std::string fileLine)
+{
+	std::regex regCircle("^<circle.*>$");
+	std::regex regRectangle("^<rect.*>$");
+	std::regex regEllipse("^<ellipse.*>$");
+	std::smatch match;
+	if(std::regex_search(fileLine,match,regCircle))
+		createCircle(fileLine);
+	if (std::regex_search(fileLine, match, regRectangle) )
+		createRectangle(fileLine);
+	if (std::regex_search(fileLine, match, regEllipse) )
+		createEllipse(fileLine);
+}
+
+void CommandParser::createCircle(std::string fileLine)
+{
+	// vector that stores all elements ;
+	double parsedX=-1;
+	double parsedY=-1;
+	double parsedCR=-1;
+	double parsedStrokeWidth=-1;
+	std::string parsedFill="none"; // shows that user didn't enter anything
+	std::string parsedStroke="none";
+	std::regex regX(R"(<circle[^>]*cx\s*=\s*\"?(\d+)\"?[^>]*>)");
+	std::regex regY(R"(<circle[^>]*cy\s*=\s*\"?(\d+)\"?[^>]*>)");
+	std::regex regCR(R"(<circle[^>]*[(r)(cr)]\s*=\s*\"?(\d+)\"?[^>]*>)");
+	std::regex regStrokeWidth(R"(<circle[^>]*stroke-width\s*=\s*\"?(\d+)\"?[^>]*>)");
+	std::regex regFill(R"(<circle[^>]*fill\s*=\s*\"?(\w+)\"?[^>]*>)");
+	std::regex regStroke(R"(<circle[^>]*stroke\s*=\s*\"?(\w+)\"?[^>]*>)");
+}
+
+void CommandParser::createRectangle(std::string fileLine)
+{
+}
+
+void CommandParser::createEllipse(std::string fileLine)
+{
 }
 
 std::string CommandParser::getPathAddress() const
@@ -15,7 +67,6 @@ void CommandParser::open(const std::string address)
 {
 	inFile.open(address);
 
-	//fileInput.open(address);
 	if(!inFile.fail())
 	{
 		throw std::runtime_error("Invalid path! \n");
@@ -24,15 +75,8 @@ void CommandParser::open(const std::string address)
 	{
 		setPathAddress(address);
 		std::cout << "Successfully opened the file ! \n";
+		parseFile();
 	}
-	/*if (fileInput.fail()){
-		std::cerr << "Invalid path ! \n";
-	}
-	else {
-		setPathAddress(address);
-		std::cout << "Successfully opened the file ! \n";
-	}
-	inFile.open("address");*/
 }
 
 void CommandParser::close()
@@ -87,4 +131,8 @@ void CommandParser::exit()
 {
 	std::cout << "Exiting the program ... \n";
 	std::exit(EXIT_FAILURE);
+}
+
+void CommandParser::translate(const std::string figureName)
+{
 }

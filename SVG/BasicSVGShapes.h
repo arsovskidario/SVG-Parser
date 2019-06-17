@@ -7,10 +7,10 @@ class BasicSVGShapes
 	double strokeWidth;
 	std::string fill;
 	std::string stroke;
-	BasicSVGShapes();
 	BasicSVGShapes(const BasicSVGShapes&);
+public:	~BasicSVGShapes();
 protected:
-	~BasicSVGShapes();
+	BasicSVGShapes();
 	void setX(double newX);
 	void setY(double newY);
 	void setStroke(const std::string newStroke);

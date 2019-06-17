@@ -63,3 +63,8 @@ std::string UserInterface::getExit() const
 {
 	return exit;
 }
+
+std::string UserInterface::getTranslate() const
+{
+	return this->translate;
+}

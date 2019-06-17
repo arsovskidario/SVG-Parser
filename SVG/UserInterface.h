@@ -10,6 +10,7 @@ private:
 	std::string save = "save";
 	std::string saveAs = "saveAs ";
 	std::string exit = "exit";
+	std::string translate = "translate ";
 	CommandParser parserObject;
 public:
 	UserInterface();
@@ -19,4 +20,5 @@ public:
 	std::string getSave() const;
 	std::string getSaveAs() const; 
 	std::string getExit() const;
+	std::string getTranslate()const;
 };
