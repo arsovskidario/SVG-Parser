@@ -183,10 +183,11 @@ void CommandParser::open(const std::string& path)
 	{
 		throw std::runtime_error("Invalid path! \n");
 	}
-
+	else{
 	setPath(path);
 	std::cout << "Successfully opened the file ! \n";
 	parseFileContent();
+	}
 }
 
 void CommandParser::close()

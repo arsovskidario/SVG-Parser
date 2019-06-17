@@ -3,6 +3,8 @@
 #include "BasicSVGShapes.h"
 #include "iostream"
 #include<sstream>
+#include<regex>
+#include<fstream>
 #include <map>
 
 class CommandParser
