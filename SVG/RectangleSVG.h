@@ -13,6 +13,7 @@ public:
 			   std::string enteredFill,std::string enteredStroke,double enteredStrokeWidth);
 	~Rectangle();
 	void translate(double transX, double transY) override;
+	void print() override;
 	double getHeight()const;
 	double getWidth()const;
 };

@@ -6,6 +6,7 @@
 #include<regex>
 #include<fstream>
 #include <map>
+#include<memory>
 
 class CommandParser
 {
@@ -13,7 +14,7 @@ private:
 	std::string path;
 	std::ofstream outputFile;
 	std::ifstream inputFile;
-	std::vector<BasicSVGShapes> shapes; // need to open file and read it 
+	std::vector<std::unique_ptr<BasicSVGShapes>> shapes; 
 	void setPath(const std::string &path);
 	void parseFileContent();
 	static std::map<std::string, std::string> parseAttributes(std::string text);
@@ -30,6 +31,8 @@ public:
 	void save();
 	void saveAs();
 	void exit();
+	void print();
+	void erase(int index);
 	void translate(const std::string& shapeName);
 	// use the vector of all shapes and search for given figure
 	//if no figure entered translate all of the objects in the vector

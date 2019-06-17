@@ -38,3 +38,9 @@ void CircleSVG::translate(double transX, double transY)
 	setX(getX()+transX);
 	setY(getY() + transY);
 }
+
+void CircleSVG::print()
+{
+	std::cout << "circle" << " " << getX() << " " << getY() << " " << getCR() << " "<<getFill() 
+			  <<" "<<getStroke()<<" "<<getStrokeWidth()<<std::endl;
+}

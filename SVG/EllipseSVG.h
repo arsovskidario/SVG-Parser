@@ -11,7 +11,8 @@ class EllipseSVG:public BasicSVGShapes
 public:
 	EllipseSVG(double newCX, double newCY, double newRX, double newRY,
 		std::string enteredFill, std::string enteredStroke, double enteredStrokeWidth);
+	void translate(double transX, double transY) override;
+	void print() override;
 	double getRX()const;
 	double getRY()const;
-	void translate(double transX, double transY) override;
 };

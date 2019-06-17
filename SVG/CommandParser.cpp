@@ -1,6 +1,7 @@
 #include"CommandParser.h"
-#include<cstring>
 #include "CircleSVG.h"
+#include "RectangleSVG.h"
+#include "EllipseSVG.h"
 //Global inFile for opening closing files
 void CommandParser::setPath(const std::string &path)
 {
@@ -87,6 +88,7 @@ void CommandParser::createCircle(const std::map<std::string, std::string>& attri
 	double center_x = 0;
 	double center_y = 0;
 	double radius = 0;
+	double strokeWidth=0;
 	std::string fill;
 	std::string stroke;
 
@@ -107,6 +109,11 @@ void CommandParser::createCircle(const std::map<std::string, std::string>& attri
 		radius = std::stod(current_value);
 	}
 
+	if (try_get_attribute_value(attributes, "stroke-width", current_value))
+	{
+		strokeWidth= std::stod(current_value);
+	}
+
 	if (try_get_attribute_value(attributes, "fill", current_value))
 	{
 		fill = current_value;
@@ -116,8 +123,7 @@ void CommandParser::createCircle(const std::map<std::string, std::string>& attri
 	{
 		stroke = current_value;
 	}
-
-	std::cout << "circle" << " " << center_x << " " << center_y << " " << radius << std::endl;
+	shapes.emplace_back(new CircleSVG(center_x, center_y, radius, stroke, fill, strokeWidth));
 }
 
 void CommandParser::createRectangle(const std::map<std::string, std::string>& attributes)
@@ -127,6 +133,7 @@ void CommandParser::createRectangle(const std::map<std::string, std::string>& at
 	double y = 0;
 	double width = 0;
 	double height = 0;
+	double strokeWidth = 0;
 
 	std::string fill;
 	std::string stroke;
@@ -153,6 +160,11 @@ void CommandParser::createRectangle(const std::map<std::string, std::string>& at
 		height = std::stod(current_value);
 	}
 
+	if (try_get_attribute_value(attributes, "stroke-width", current_value))
+	{
+		strokeWidth = std::stod(current_value);
+	}
+
 	if (try_get_attribute_value(attributes, "fill", current_value))
 	{
 		fill = current_value;
@@ -163,12 +175,58 @@ void CommandParser::createRectangle(const std::map<std::string, std::string>& at
 		stroke = current_value;
 	}
 
-	std::cout << "rectangle" << " " << x << " " << y << " " << width << " " << height << std::endl;
+	shapes.emplace_back(new Rectangle(x, y, width, height, fill, stroke, strokeWidth));
 }
 
 void CommandParser::createEllipse(const std::map<std::string, std::string>& attributes)
 {
-	// TODO: implement
+	double center_x = 0;
+	double center_y = 0;
+	double radius_x = 0;
+	double radius_y = 0;
+	double strokeWidth = 0;
+
+	std::string fill;
+	std::string stroke;
+
+	std::string current_value;
+
+	if (try_get_attribute_value(attributes, "cx", current_value))
+	{
+		center_x = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "cy", current_value))
+	{
+		center_y = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "rx", current_value))
+	{
+		radius_x = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "ry", current_value))
+	{
+		radius_y = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "stroke-width", current_value))
+	{
+		strokeWidth = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "fill", current_value))
+	{
+		fill = current_value;
+	}
+
+	if (try_get_attribute_value(attributes, "stroke", current_value))
+	{
+		stroke = current_value;
+	}
+
+	shapes.emplace_back(new EllipseSVG(center_x, center_y, radius_x, radius_y, fill, stroke, strokeWidth));
 }
 std::string CommandParser::getPath() const
 {
@@ -246,4 +304,23 @@ void CommandParser::exit()
 }
 void CommandParser::translate(const std::string& shapeName)
 {
+}
+
+void CommandParser::print()
+{
+	for(int i=0;i<shapes.size();i++)
+	{
+		shapes[i]->print();
+	}
+}
+
+void CommandParser::erase(int index)
+{
+	if (index < shapes.size())
+	{
+		shapes.erase(shapes.begin() + index);
+		std::cout << "Successfully deleted element at position [" << index << "] \n";
+	}
+	else
+		std::cout << "There is no figure number " << index << "! \n";
 }

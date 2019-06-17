@@ -11,6 +11,8 @@ private:
 	std::string saveAs = "saveAs ";
 	std::string exit = "exit";
 	std::string translate = "translate ";
+	std::string print = "print";
+	std::string erase = "erase ";
 	CommandParser parserObject;
 public:
 	UserInterface();
@@ -21,4 +23,6 @@ public:
 	std::string getSaveAs() const; 
 	std::string getExit() const;
 	std::string getTranslate()const;
+	std::string getPrint()const;
+	std::string getErase()const;
 };

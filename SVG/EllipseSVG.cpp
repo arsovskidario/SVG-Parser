@@ -46,3 +46,9 @@ void EllipseSVG::translate(double transX, double transY)
 	setX(getX() + transX);
 	setY(getY() + transY);
 }
+
+void EllipseSVG::print()
+{
+	std::cout << "circle" << " " << getX() << " " << getY() << " " << getRX() << " " << getRY() << " " << getFill()
+		      << " " << getStroke() << " " << getStrokeWidth() << std::endl;
+}

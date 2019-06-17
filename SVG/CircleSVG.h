@@ -11,5 +11,7 @@ public:
 			std::string enteredFill, std::string enteredStroke, double enteredStrokeWidth);
 		~CircleSVG();
 		void translate(double transX,double transY) override;
+		void print() override;
 		double getCR()const;
+	
 };

@@ -1,2 +1,4 @@
-﻿  Main.cpp
+﻿  CommandParser.cpp
+c:\dev\object oriented programming\project\svg\commandparser.cpp(311): warning C4018: '<': signed/unsigned mismatch
+c:\dev\object oriented programming\project\svg\commandparser.cpp(319): warning C4018: '<': signed/unsigned mismatch
   SVG.vcxproj -> C:\Dev\Object Oriented Programming\Project\SVG\Debug\SVG.exe

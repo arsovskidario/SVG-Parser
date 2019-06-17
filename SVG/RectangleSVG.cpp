@@ -20,6 +20,12 @@ void Rectangle::translate(double transX, double transY)
 	setY(getY()+transY);
 }
 
+void Rectangle::print()
+{
+	std::cout << "rectangle" << " " << getX() << " " << getY()<< " " << getWidth() << " " << getHeight() 
+	          <<" "<<getFill()<<" "<<getStroke() << " " << getStrokeWidth() << std::endl;
+}
+
 void Rectangle::setWidth(double newWidth)
 {
 	this->width = newWidth;

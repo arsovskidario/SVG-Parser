@@ -10,6 +10,8 @@ BasicSVGShapes::BasicSVGShapes(const BasicSVGShapes&)
 
 BasicSVGShapes::~BasicSVGShapes()
 {
+	fill.clear();
+	stroke.clear();
 }
 
 void BasicSVGShapes::setX(double newX)
