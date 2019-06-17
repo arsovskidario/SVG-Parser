@@ -2,99 +2,211 @@
 #include<cstring>
 #include "CircleSVG.h"
 
-void CommandParser::setPathAddress(const std::string newPathAddress)
+void CommandParser::setPath(const std::string &path)
 {
-	this->pathAddress = newPathAddress;
+	this->path = path;
 }
 
-void CommandParser::parseFile()
+void CommandParser::parseFileContent()
 {
-	if(inFile.is_open())
+	if (inputFile.is_open())
 	{
 		std::string line;
-		while(std::getline(inFile,line))
+		while (std::getline(inputFile, line))
 		{
-			checkFigure(line);
+			createShape(line);
 		}
 	}
 }
 
-void CommandParser::checkFigure(std::string fileLine)
+std::map<std::string, std::string> CommandParser::parseAttributes(std::string text)
 {
-	std::regex regCircle("^<circle.*>$");
-	std::regex regRectangle("^<rect.*>$");
-	std::regex regEllipse("^<ellipse.*>$");
-	std::smatch match;
-	if(std::regex_search(fileLine,match,regCircle))
-		createCircle(fileLine);
-	if (std::regex_search(fileLine, match, regRectangle) )
-		createRectangle(fileLine);
-	if (std::regex_search(fileLine, match, regEllipse) )
-		createEllipse(fileLine);
+	std::map<std::string, std::string> attributes;
+
+	std::regex attributesRegex(R"(([\w\-_]+)(?:=\"([^\"]*)\")?)");
+
+	auto attributesBegin = std::sregex_iterator(text.begin(), text.end(), attributesRegex);
+	auto attributesEnd = std::sregex_iterator();
+
+	for (std::sregex_iterator attribute = attributesBegin; attribute != attributesEnd; ++attribute)
+	{
+		std::string attributeName = attribute->str(1);
+		std::string attributeValue = attribute->str(2);
+		attributes[attributeName] = attributeValue;
+	}
+
+	return attributes;
 }
 
-void CommandParser::createCircle(std::string fileLine)
+void CommandParser::createShape(std::string tag)
 {
-	// vector that stores all elements ;
-	double parsedX=-1;
-	double parsedY=-1;
-	double parsedCR=-1;
-	double parsedStrokeWidth=-1;
-	std::string parsedFill="none"; // shows that user didn't enter anything
-	std::string parsedStroke="none";
-	std::regex regX(R"(<circle[^>]*cx\s*=\s*\"?(\d+)\"?[^>]*>)");
-	std::regex regY(R"(<circle[^>]*cy\s*=\s*\"?(\d+)\"?[^>]*>)");
-	std::regex regCR(R"(<circle[^>]*[(r)(cr)]\s*=\s*\"?(\d+)\"?[^>]*>)");
-	std::regex regStrokeWidth(R"(<circle[^>]*stroke-width\s*=\s*\"?(\d+)\"?[^>]*>)");
-	std::regex regFill(R"(<circle[^>]*fill\s*=\s*\"?(\w+)\"?[^>]*>)");
-	std::regex regStroke(R"(<circle[^>]*stroke\s*=\s*\"?(\w+)\"?[^>]*>)");
+	std::regex shapeRegex(R"(<(circle|rect|ellipse)(.*)\/?>)");
+	auto tagsBegin = std::sregex_iterator(tag.begin(), tag.end(), shapeRegex);
+	auto tagsEnd = std::sregex_iterator();
+
+	for (std::sregex_iterator tag = tagsBegin; tag != tagsEnd; ++tag)
+	{
+		std::string identifier = tag->str(1);
+		std::string attributesText = tag->str(2);
+		std::map<std::string, std::string> attributes = parseAttributes(attributesText);
+
+		if (identifier == "circle")
+		{
+			createCircle(attributes);
+		}
+		else if (identifier == "rect")
+		{
+			createRectangle(attributes);
+		}
+		else if (identifier == "ellipse")
+		{
+			createEllipse(attributes);
+		}
+	}
 }
 
-void CommandParser::createRectangle(std::string fileLine)
+bool CommandParser::try_get_attribute_value(
+	const std::map<std::string, std::string>& attributes,
+	const std::string& name,
+	std::string& out)
 {
+	const auto iterator = attributes.find(name);
+
+	if (iterator != attributes.end())
+	{
+		out = iterator->second;
+		return true;
+	}
+
+	return false;
 }
 
-void CommandParser::createEllipse(std::string fileLine)
+void CommandParser::createCircle(const std::map<std::string, std::string>& attributes)
 {
+	// set default values for unset attributes
+	double center_x = 0;
+	double center_y = 0;
+	double radius = 0;
+	std::string fill;
+	std::string stroke;
+
+	std::string current_value;
+
+	if (try_get_attribute_value(attributes, "cx", current_value))
+	{
+		center_x = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "cy", current_value))
+	{
+		center_y = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "r", current_value))
+	{
+		radius = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "fill", current_value))
+	{
+		fill = current_value;
+	}
+
+	if (try_get_attribute_value(attributes, "stroke", current_value))
+	{
+		stroke = current_value;
+	}
+
+	std::cout << "circle" << " " << center_x << " " << center_y << " " << radius << std::endl;
 }
 
-std::string CommandParser::getPathAddress() const
+void CommandParser::createRectangle(const std::map<std::string, std::string>& attributes)
 {
-	return this->pathAddress;
+	// set default values for unset attributes
+	double x = 0;
+	double y = 0;
+	double width = 0;
+	double height = 0;
+
+	std::string fill;
+	std::string stroke;
+
+	std::string current_value;
+
+	if (try_get_attribute_value(attributes, "x", current_value))
+	{
+		x = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "y", current_value))
+	{
+		y = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "width", current_value))
+	{
+		width = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "height", current_value))
+	{
+		height = std::stod(current_value);
+	}
+
+	if (try_get_attribute_value(attributes, "fill", current_value))
+	{
+		fill = current_value;
+	}
+
+	if (try_get_attribute_value(attributes, "stroke", current_value))
+	{
+		stroke = current_value;
+	}
+
+	std::cout << "rectangle" << " " << x << " " << y << " " << width << " " << height << std::endl;
 }
 
-void CommandParser::open(const std::string address)
+void CommandParser::createEllipse(const std::map<std::string, std::string>& attributes)
 {
-	inFile.open(address);
+	// TODO: implement
+}
 
-	if(!inFile.fail())
+std::string CommandParser::getPath() const
+{
+	return this->path;
+}
+
+void CommandParser::open(const std::string& path)
+{
+	inputFile.open(path);
+
+	if (inputFile.fail())
 	{
 		throw std::runtime_error("Invalid path! \n");
 	}
-	else
-	{
-		setPathAddress(address);
-		std::cout << "Successfully opened the file ! \n";
-		parseFile();
-	}
+
+	setPath(path);
+	std::cout << "Successfully opened the file ! \n";
+	parseFileContent();
 }
 
 void CommandParser::close()
 {
-	if (inFile.is_open()) {
-	inFile.close();
-	std::cout << "Successfully closed file! \n";
+	if (inputFile.is_open())
+	{
+		inputFile.close();
+		std::cout << "Successfully closed file! \n";
 	}
-   else
-	   std::cerr << "You didn't open a file ! \n";
+	else
+		std::cerr << "You didn't open a file ! \n";
 }
 
 void CommandParser::save()
 {
-	if (inFile.is_open())
+	if (inputFile.is_open())
 	{
 		//need to store stuff into a file first 
-		std::ofstream saveFile(getPathAddress()); //save file to same directory
+		std::ofstream saveFile(getPath()); //save file to same directory
 		std::cout << "Successfully saved another file \n";
 	}
 	else
@@ -105,27 +217,26 @@ void CommandParser::save()
 
 void CommandParser::saveAs()
 {
-	if(inFile.is_open())
+	if (inputFile.is_open())
 	{
 		std::string inputPath;
 		std::cout << "Enter the path you wish to save your file : \n";
 		std::getline(std::cin, inputPath);
 		std::ofstream saveFile(inputPath);
-		  if(saveFile.fail())
-		  {
-			  std::cerr << "You entered a invalid path! \n";
-		  }
-		  else 
-		  {
-			  std::cout << "Successfully saved another file \n";
-		  }
-
+		if (saveFile.fail())
+		{
+			std::cerr << "You entered a invalid path! \n";
+		}
+		else
+		{
+			std::cout << "Successfully saved another file \n";
+		}
 	}
 	else
 	{
 		std::cout << "You didn't open a file ! \n";
 	}
- }
+}
 
 void CommandParser::exit()
 {
@@ -133,6 +244,6 @@ void CommandParser::exit()
 	std::exit(EXIT_FAILURE);
 }
 
-void CommandParser::translate(const std::string figureName)
+void CommandParser::translate(const std::string& shapeName)
 {
 }
