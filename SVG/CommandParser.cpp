@@ -1,8 +1,8 @@
 #include"CommandParser.h"
 #include<cstring>
 #include "CircleSVG.h"
-
-void CommandParser::setPathAddress(const std::string newPathAddress)
+//Global inFile for opening closing files
+void CommandParser::setPathAddress(const std::string& newPathAddress)
 {
 	this->pathAddress = newPathAddress;
 }
@@ -58,21 +58,22 @@ void CommandParser::createEllipse(std::string fileLine)
 {
 }
 
+
 std::string CommandParser::getPathAddress() const
 {
 	return this->pathAddress;
 }
 
-void CommandParser::open(const std::string address)
+void CommandParser::open(const std::string& address)
 {
 	inFile.open(address);
-
-	if(!inFile.fail())
+	if(inFile.fail())
 	{
 		throw std::runtime_error("Invalid path! \n");
 	}
 	else
 	{
+		//setCheckOpen(true);
 		setPathAddress(address);
 		std::cout << "Successfully opened the file ! \n";
 		parseFile();
@@ -81,9 +82,11 @@ void CommandParser::open(const std::string address)
 
 void CommandParser::close()
 {
-	if (inFile.is_open()) {
-	inFile.close();
-	std::cout << "Successfully closed file! \n";
+	
+	if (inFile.is_open()) 
+	{
+		inFile.close();
+		std::cout << "Successfully closed file! \n";
 	}
    else
 	   std::cerr << "You didn't open a file ! \n";
@@ -133,6 +136,6 @@ void CommandParser::exit()
 	std::exit(EXIT_FAILURE);
 }
 
-void CommandParser::translate(const std::string figureName)
+void CommandParser::translate(const std::string& figureName)
 {
 }
