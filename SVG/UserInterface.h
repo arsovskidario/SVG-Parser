@@ -13,6 +13,7 @@ private:
 	std::string translate = "translate ";
 	std::string print = "print";
 	std::string erase = "erase ";
+	std::string create = "create ";
 	CommandParser parserObject;
 public:
 	UserInterface();
@@ -25,4 +26,5 @@ public:
 	std::string getTranslate()const;
 	std::string getPrint()const;
 	std::string getErase()const;
+	std::string getCreate()const;
 };

@@ -262,6 +262,9 @@ void CommandParser::close()
 
 void CommandParser::save()
 {
+	//TODO create a function that converts all the vector elements to text exampe:
+	// <rect xy"(insert xy) ,then add it to a open file line 
+	//you can delete the whole file and then replace all the text with the objects
 	if (inputFile.is_open())
 	{
 		//need to store stuff into a file first 
@@ -323,4 +326,13 @@ void CommandParser::erase(int index)
 	}
 	else
 		std::cout << "There is no figure number " << index << "! \n";
+}
+
+void CommandParser::create(const std::vector<std::string>& shapeInput)
+{
+	if (!shapeInput.empty()) 
+	{
+		//TODO create a sstream with xml shape syntax and send it to create shape tag or better yet create cirle /rect etc..
+		std::cout << "Successfully created shape at (" << shapes.size() << ") position.\n";
+	}
 }

@@ -1,4 +1,7 @@
-﻿  CommandParser.cpp
-c:\dev\object oriented programming\project\svg\commandparser.cpp(311): warning C4018: '<': signed/unsigned mismatch
-c:\dev\object oriented programming\project\svg\commandparser.cpp(319): warning C4018: '<': signed/unsigned mismatch
-  SVG.vcxproj -> C:\Dev\Object Oriented Programming\Project\SVG\Debug\SVG.exe
+﻿  UserInterface.cpp
+c:\dev\object oriented programming\project\svg\userinterface.cpp(59): error C2664: 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> std::vector<_Ty,std::allocator<_Ty>>::erase(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>)': cannot convert argument 1 from 'int' to 'std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(59): note: No constructor could take the source type, or constructor overload resolution was ambiguous

@@ -33,6 +33,7 @@ public:
 	void exit();
 	void print();
 	void erase(int index);
+	void create(const std::vector<std::string>& shapeInput);
 	void translate(const std::string& shapeName);
 	// use the vector of all shapes and search for given figure
 	//if no figure entered translate all of the objects in the vector

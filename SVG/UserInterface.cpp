@@ -6,19 +6,20 @@ UserInterface::UserInterface()
 //check the read for the address
 void UserInterface::readCommand(std::string command)
 {
+	std::vector<std::string> commandTokens;
+	std::string buf; //Have a buffer 
+	std::stringstream ss(command);//Insert the commands into a stream
+
+	while (ss >> buf)
+	{
+		commandTokens.push_back(buf);
+	}
 	if (command.empty())
 		std::cout << "Enter a command please ! \n";
 
-	if (command.substr(0, 5) == getOpen()) {//open
-		std::vector<std::string> commandTokens;
-		std::string buf; //Have a buffer 
-		std::stringstream ss(command);//Insert the commands into a stream
-		while(ss>>buf)
-		{
-			commandTokens.push_back(buf);
-		}
+	if (command.substr(0, 5) == getOpen())
+	{
 		const std::string addressInput = commandTokens[1]; //skips open and gets address
-		
 		parserObject.open(addressInput);
 	}
 
@@ -49,15 +50,14 @@ void UserInterface::readCommand(std::string command)
 
 	if(command.substr(0,6)==getErase())
 	{
-		std::vector<std::string> commandTokens;
-		std::string buf; //Have a buffer 
-		std::stringstream ss(command);//Insert the commands into a stream
-		while (ss >> buf)
-		{
-			commandTokens.push_back(buf);
-		}
 		int indexInput = std::stoi(commandTokens[1]);
 		parserObject.erase(indexInput);
+	}
+
+	if (command.substr(0,7)==getCreate())
+	{
+		commandTokens.erase(commandTokens.begin());
+		parserObject.create(commandTokens);
 	}
 }
 
@@ -99,4 +99,9 @@ std::string UserInterface::getPrint() const
 std::string UserInterface::getErase() const
 {
 	return this->erase;
+}
+
+std::string UserInterface::getCreate() const
+{
+	return this->create;
 }
