@@ -24,6 +24,7 @@ private:
 	void createCircle(const std::map<std::string, std::string>& attributes);
 	void createRectangle(const std::map<std::string, std::string>& attributes);
 	void createEllipse(const std::map<std::string, std::string>& attributes);
+	bool createInputShape(const std::vector<std::string>& shapeInput);
 public:
 	std::string getPath() const;
 	void open(const std::string& path);
@@ -34,7 +35,6 @@ public:
 	void print();
 	void erase(int index);
 	void create(const std::vector<std::string>& shapeInput);
-	void translate(const std::string& shapeName);
 	// use the vector of all shapes and search for given figure
 	//if no figure entered translate all of the objects in the vector
 

@@ -228,6 +228,57 @@ void CommandParser::createEllipse(const std::map<std::string, std::string>& attr
 
 	shapes.emplace_back(new EllipseSVG(center_x, center_y, radius_x, radius_y, fill, stroke, strokeWidth));
 }
+
+bool CommandParser::createInputShape(const std::vector<std::string>& shapeInput)
+{
+	if(shapeInput[0]=="rectangle")
+	{
+		int rectMin = 8; //no of elements a rectangle needs to have 
+		if (shapeInput.size() != rectMin) return false;
+		std::string rectTag = "<rect x=\" " + shapeInput[1];
+		std::string rectY = "\"y=\" " + shapeInput[2];
+		std::string rectWidth = "\"width=\"" + shapeInput[3];
+		std::string rectHeight = "\" height=\" " + shapeInput[4];
+		std::string rectFill = "\" fill=\" " + shapeInput[5];
+		std::string rectStroke = "\" stroke=\" " + shapeInput[6];
+		std::string rectStrokeWidth = "\" stroke-width=\" " + shapeInput[7]+"\">";
+		std::string rectShape = rectTag + rectY + rectWidth + rectHeight + rectFill + rectStroke + rectStrokeWidth;
+		createShape(rectShape);
+		return true;
+	}
+
+	if(shapeInput[0]=="circle")
+	{
+		int circleMin = 7;
+		if (shapeInput.size() != circleMin) return false;
+		std::string circleTag = "<circle cx=\" " + shapeInput[1];
+		std::string circleCY= "\"cy=\" " + shapeInput[2];
+		std::string circleR= "\"r=\" " + shapeInput[3];
+		std::string circleFill = "\" fill=\" " + shapeInput[4];
+		std::string circleStroke = "\" stroke=\" " + shapeInput[5];
+		std::string circleStrokeWidth = "\" stroke-width=\" " + shapeInput[6] + "\">";
+		std::string circleShape = circleTag + circleCY + circleR + circleFill + circleStroke + circleStrokeWidth;
+		createShape(circleShape);
+		return true;
+	}
+
+	if(shapeInput[0]=="ellipse")
+	{
+		int ellipseMin = 8;
+		if (shapeInput.size() != ellipseMin) return false;
+		std::string ellipseTag = "<ellipse cx=\" " + shapeInput[1];
+		std::string ellipseCY = "\"cy=\" " + shapeInput[2];
+		std::string ellipseRX = "\"rx=\" " + shapeInput[3];
+		std::string ellipseRY = "\"ry=\" " + shapeInput[4];
+		std::string ellipseFill = "\" fill=\" " + shapeInput[5];
+		std::string ellipseStroke = "\" stroke=\" " + shapeInput[6];
+		std::string ellipseStrokeWidth = "\" stroke-width=\" " + shapeInput[7] + "\">";
+		std::string ellipseShape = ellipseTag + ellipseCY + ellipseRX + ellipseRY + ellipseFill + ellipseStroke + ellipseStrokeWidth;
+		createShape(ellipseShape);
+		return true;
+	}
+}
+
 std::string CommandParser::getPath() const
 {
 	return this->path;
@@ -305,9 +356,6 @@ void CommandParser::exit()
 	std::cout << "Exiting the program ... \n";
 	std::exit(EXIT_FAILURE);
 }
-void CommandParser::translate(const std::string& shapeName)
-{
-}
 
 void CommandParser::print()
 {
@@ -330,9 +378,11 @@ void CommandParser::erase(int index)
 
 void CommandParser::create(const std::vector<std::string>& shapeInput)
 {
-	if (!shapeInput.empty()) 
+	if (!shapeInput.empty())
 	{
-		//TODO create a sstream with xml shape syntax and send it to create shape tag or better yet create cirle /rect etc..
-		std::cout << "Successfully created shape at (" << shapes.size() << ") position.\n";
+		if (createInputShape(shapeInput))
+			std::cout << "Successfully created shape at (" << shapes.size() - 1 << ") position.\n";
+		else
+			std::cerr << "Enter the correct shape format \n";
 	}
 }
