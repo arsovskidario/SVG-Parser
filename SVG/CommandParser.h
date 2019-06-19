@@ -1,40 +1,15 @@
 #pragma once
 #include<vector>
-#include "BasicSVGShapes.h"
-#include "iostream"
-#include<sstream>
+#include "Shape.h"
 #include<regex>
 #include<fstream>
 #include <map>
-#include<memory>
 
 class CommandParser
 {
 private:
-	std::string path;
-	std::ofstream outputFile;
-	std::ifstream inputFile;
-	std::vector<std::unique_ptr<BasicSVGShapes>> shapes; 
-	void setPath(const std::string &path);
-	void parseFileContent();
-	static std::map<std::string, std::string> parseAttributes(std::string text);
-	void createShape(std::string tag);
-	static bool try_get_attribute_value(const std::map<std::string, std::string>& attributes,
-	                                    const std::string& name, std::string& out);
-	void createCircle(const std::map<std::string, std::string>& attributes);
-	void createRectangle(const std::map<std::string, std::string>& attributes);
-	void createEllipse(const std::map<std::string, std::string>& attributes);
-	bool createInputShape(const std::vector<std::string>& shapeInput);
 public:
-	std::string getPath() const;
-	void open(const std::string& path);
-	void close();
-	void save();
-	void saveAs();
-	void exit();
-	void print();
-	void erase(int index);
-	void create(const std::vector<std::string>& shapeInput);
+
 	// use the vector of all shapes and search for given figure
 	//if no figure entered translate all of the objects in the vector
 

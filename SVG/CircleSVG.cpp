@@ -1,4 +1,4 @@
-#include"CircleSVG.h"
+#include"Circle.h"
 
 CircleSVG::CircleSVG():BasicSVGShapes()
 {

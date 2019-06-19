@@ -1,5 +1,5 @@
 #pragma once
-#include"BasicSVGShapes.h"
+#include"Shape"
 class CircleSVG:public BasicSVGShapes
 {
 	CircleSVG();

@@ -118,20 +118,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CircleSVG.cpp" />
-    <ClCompile Include="EllipseSVG.cpp" />
+    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="CommandParser.cpp" />
-    <ClCompile Include="BasicSVGShapes.cpp" />
-    <ClCompile Include="RectangleSVG.cpp" />
+    <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="SVG.cpp" />
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BasicSVGShapes.h" />
-    <ClInclude Include="CircleSVG.h" />
+    <ClInclude Include="Shape.h" />
+    <ClInclude Include="Circle.h" />
     <ClInclude Include="CommandParser.h" />
-    <ClInclude Include="EllipseSVG.h" />
-    <ClInclude Include="RectangleSVG.h" />
+    <ClInclude Include="Ellipse.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="SVG.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

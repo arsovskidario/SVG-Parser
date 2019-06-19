@@ -1,4 +1,4 @@
-#include"BasicSVGShapes.h"
+#include"Shape"
 //No one will use them
 BasicSVGShapes::BasicSVGShapes()
 {

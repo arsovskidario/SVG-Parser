@@ -1,24 +1,24 @@
-#include"EllipseSVG.h"
+#include"Ellipse.h"
 
-EllipseSVG::EllipseSVG():BasicSVGShapes()
+Ellipse::Ellipse():BasicSVGShapes()
 {
 }
 
-EllipseSVG::EllipseSVG(const EllipseSVG&):BasicSVGShapes()
+Ellipse::Ellipse(const Ellipse&):BasicSVGShapes()
 {
 }
 
-void EllipseSVG::setRX(double newRX)
+void Ellipse::setRX(double newRX)
 {
 	this->RX = newRX;
 }
 
-void EllipseSVG::setRY(double newRY)
+void Ellipse::setRY(double newRY)
 {
 	this->RY = newRY;
 }
 
-EllipseSVG::EllipseSVG(double newCX, double newCY,double newRX,double newRY,
+Ellipse::Ellipse(double newCX, double newCY,double newRX,double newRY,
 					   std::string enteredFill, std::string enteredStroke,double enteredStrokeWidth):BasicSVGShapes()
 {
 	setX(newCX);
@@ -31,23 +31,23 @@ EllipseSVG::EllipseSVG(double newCX, double newCY,double newRX,double newRY,
 
 }
 
-double EllipseSVG::getRX() const
+double Ellipse::getRX() const
 {
 	return this->RX;
 }
 
-double EllipseSVG::getRY() const
+double Ellipse::getRY() const
 {
 	return this->RY;
 }
 
-void EllipseSVG::translate(double transX, double transY)
+void Ellipse::translate(double transX, double transY)
 {
 	setX(getX() + transX);
 	setY(getY() + transY);
 }
 
-void EllipseSVG::print()
+void Ellipse::print()
 {
 	std::cout << "ellipse" << " " << getX() << " " << getY() << " " << getRX() << " " << getRY() << " " << getFill()
 		      << " " << getStroke() << " " << getStrokeWidth() << std::endl;

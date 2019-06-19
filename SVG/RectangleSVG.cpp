@@ -1,10 +1,10 @@
-#include"RectangleSVG.h"
+#include "Rectangle.h"
 
-Rectangle::Rectangle():BasicSVGShapes()
+Rectangle::Rectangle():Shape()
 {
 }
 
-Rectangle::Rectangle(const Rectangle&):BasicSVGShapes()
+Rectangle::Rectangle(const Rectangle&):Shape()
 {
 
 }
@@ -14,10 +14,10 @@ Rectangle::~Rectangle()
 {
 }
 
-void Rectangle::translate(double transX, double transY)
+void Rectangle::translate(double deltaX, double deltaY)
 {
-	setX(getX()+transX);
-	setY(getY()+transY);
+	setX(getX()+deltaX);
+	setY(getY()+deltaY);
 }
 
 void Rectangle::print()
@@ -36,15 +36,15 @@ void Rectangle::setHeight(double newHeight)
 	this->height = newHeight;
 }
 
-Rectangle::Rectangle(double enteredX, double enteredY, double enteredWidth, double enteredHeight, std::string enteredFill,
-					  std::string enteredStroke, double enteredStrokeWidth) :BasicSVGShapes()
+Rectangle::Rectangle(double x, double y, double width, double height, std::string fill,
+					  std::string stroke, double enteredStrokeWidth) :Shape()
 {
-	setX(enteredX);
-	setY(enteredY);
-	setWidth(enteredWidth);
-	setHeight(enteredHeight);
-	setFill(enteredFill);
-	setStroke(enteredStroke);
+	setX(x);
+	setY(y);
+	setWidth(width);
+	setHeight(height);
+	setFill(fill);
+	setStroke(stroke);
 	setStrokeWidth(enteredStrokeWidth);
 }
 
