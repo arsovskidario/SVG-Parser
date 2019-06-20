@@ -74,6 +74,11 @@ void SVG::erase(int index)
 		std::cout << "There is no figure number " << index << "! \n";
 }
 
+void SVG::create(Shape* shape)
+{
+	shapes.push_back(shape);
+}
+
 void SVG::print()
 {
 	for (Shape * shape: shapes)

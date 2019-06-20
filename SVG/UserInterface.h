@@ -52,7 +52,12 @@ private:
 	static std::vector<Shape*> parseShapes(std::string text);
 	static std::map<std::string, std::string> parseAttributes(std::string text);
 	std::map<std::string, std::string> parseTranslation(const std::string text);
-	std::string shapeStream(std::stringstream &textStream, std::vector<std::string> &textPassed);
+	std::string shapeStream(std::stringstream &textStream, std::vector<std::string> &text);
+	std::string normalStream(std::stringstream &textStream, std::vector<std::string>&text);
+
+	Circle* newCircle(std::vector<std::string> text);
+	Rectangle* newRectangle(std::vector<std::string> text);
+	Ellipse* newEllipse(std::vector<std::string> text);
 
 	std::string getPath() const;
 	void open(const std::string& path);
@@ -61,8 +66,9 @@ private:
 	void saveAs(std::string path);
 	void print();
 	void exit();
+	void create(std::vector<std::string>& text);
 	void erase(int index);
-	void translate(const std::vector<std::basic_string<char>>& cses);
+	void translate(const std::vector<std::string>& text);
 public:
 	UserInterface() = default;
 	~UserInterface();

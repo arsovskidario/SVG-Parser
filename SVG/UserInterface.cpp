@@ -120,10 +120,7 @@ void UserInterface::translate(const std::vector<std::string>& text)
 	}
 	else
 	{
-		for (int i = 0; i < textPassed.size(); i++) 
-		{
-			textStream << textPassed[i];
-		}
+		std::string parsedText = normalStream(textStream, textPassed);
 		attributes = parseTranslation(textStream.str());
 		translateShapes(attributes);
 	}
@@ -197,6 +194,15 @@ void UserInterface::executeCommand(std::vector<std::string> params)
 		{
 			params.erase(params.begin());
 			translate(params);
+		}
+		else std::cout << noOpenFileMessage << std::endl;
+	}
+	else if(commandName==COMMANDS.CREATE)
+	{
+		if(isFileOpen())
+		{
+			params.erase(params.begin());
+			create(params);
 		}
 		else std::cout << noOpenFileMessage << std::endl;
 	}
@@ -344,6 +350,35 @@ void UserInterface::exit()
 	svg->exit();
 }
 
+void UserInterface::create(std::vector<std::string>& text)
+{
+	const std::string identifier = text[0];
+	text.erase(text.begin()); //erases identifier
+	const int TEXT_SIZE = text.size();
+	if(identifier=="circle")
+	{
+		const int CIRCLE_ATTRIBUTES = 5; //max number of attributes
+	   if(TEXT_SIZE==CIRCLE_ATTRIBUTES)
+		svg->create(newCircle(text));
+	   else std::cerr << "Enter a valid create format! \n";
+	}
+	else if(identifier=="rectangle")
+	{
+		const int RECTANGLE_ATTRIBUTES = 6; //max number of attributes
+		if(TEXT_SIZE==RECTANGLE_ATTRIBUTES)
+		svg->create(newRectangle(text));
+		else std::cerr << "Enter a valid create format! \n";
+	}
+	else if(identifier=="ellipse")
+	{
+	   const int ELLIPSE_ATTRIBUTES = 6; //max number of attributes
+	   if(TEXT_SIZE==ELLIPSE_ATTRIBUTES)
+		svg->create(newEllipse(text));
+	   else std::cerr << "Enter a valid create format! \n";
+	}
+	else std::cerr << "Enter a shape ! \n";
+}
+
 void UserInterface::erase(const int index)
 {
 	svg->erase(index);
@@ -368,14 +403,67 @@ std::map<std::string, std::string> UserInterface::parseTranslation(const std::st
 	return attributes;
 }
 
-std::string UserInterface::shapeStream(std::stringstream& textStream, std::vector<std::string>& textPassed)
+std::string UserInterface::shapeStream(std::stringstream& textStream, std::vector<std::string>& text)
 {
-	for (int i = 1; i < textPassed.size(); i++) //skips the shape name
+	for (int i = 1; i < text.size(); i++) //skips the identifier name
 	{
-		textStream << textPassed[i];
+		textStream << text[i];
 	}
 	return textStream.str();
 }
+
+std::string UserInterface::normalStream(std::stringstream& textStream, std::vector<std::string>& text)
+{
+	for (int i = 0; i < text.size(); i++)
+	{
+		textStream << text[i];
+	}
+	return textStream.str();
+}
+
+Circle* UserInterface::newCircle(std::vector<std::string> text)
+{
+		double center_x = std::stod(text[0]);
+		double center_y = std::stod(text[1]);
+		double radius = std::stod(text[2]);
+		std::string fill;
+		fill = text[3];
+		std::string stroke;
+		stroke = text[4];
+		Circle* circle = new Circle(center_x, center_y, radius, stroke, fill);
+		return circle;
+}
+
+Rectangle* UserInterface::newRectangle(std::vector<std::string> text)
+{
+		double x = std::stod(text[0]);
+		double y = std::stod(text[1]);
+		double width = std::stod(text[2]);
+		double height = std::stod(text[3]);
+		std::string fill;
+		fill = text[4];
+		std::string stroke;
+		stroke = text[5];
+		Rectangle* rectangle = new Rectangle(x, y, width, height, fill, stroke);
+		return rectangle;
+}
+
+
+Ellipse* UserInterface::newEllipse(std::vector<std::string> text)
+{
+
+		double center_x = std::stod(text[0]);
+		double center_y = std::stod(text[1]);
+		double radius_x = std::stod(text[2]);
+		double radius_y = std::stod(text[3]);
+		std::string fill;
+		fill = text[4];
+		std::string stroke;
+		stroke = text[5];
+		Ellipse* ellipse = new Ellipse(center_x, center_y, radius_x, radius_y, fill, stroke);
+		return ellipse;
+}
+
 
 void UserInterface::print()
 {

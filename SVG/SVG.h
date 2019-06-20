@@ -22,6 +22,7 @@ public:
 	void translateEllipse(double deltaX, double deltaY);
 	void translateShapes(double deltaX, double deltaY);
 	void erase(int index);
+	void create(Shape* shape);
 	void print();
 	static void exit();
 	//void translate(const std::vector<std::string>& translateInput);
