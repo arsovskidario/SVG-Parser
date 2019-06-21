@@ -24,8 +24,9 @@ public:
 	void erase(int index);
 	void create(Shape* shape);
 	void print();
+	void withIn(double startHeight, double endHeight,
+		        double startWidth, double endWidth);
 	static void exit();
-	//void translate(const std::vector<std::string>& translateInput);
 	SVG() = default;
 	~SVG();
 };

@@ -85,6 +85,14 @@ void SVG::print()
 		shape->print();
 }
 
+void SVG::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
+{
+	for(Shape* shape:shapes)
+	{
+		shape->withIn(startHeight,  endHeight, startWidth,  endWidth);
+	}
+}
+
 void SVG::exit()
 {
 	std::cout << "Exiting the program ... \n";

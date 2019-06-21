@@ -121,7 +121,6 @@
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="CommandParser.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SVG.cpp" />
@@ -130,7 +129,6 @@
   <ItemGroup>
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Circle.h" />
-    <ClInclude Include="CommandParser.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SVG.h" />

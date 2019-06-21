@@ -1,11 +1,11 @@
 #pragma once
 #include<string>
-#include "CommandParser.h"
-#include<sstream>
 #include "SVG.h"
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Ellipse.h"
+#include<fstream>
+#include<regex>
 
 class UserInterface
 {
@@ -20,6 +20,7 @@ class UserInterface
 		const std::string ERASE = "erase";
 		const std::string TRANSLATE = "translate";
 		const std::string CREATE = "create";
+		const std::string WITH_IN = "within";
 
 	} COMMANDS;
 
@@ -69,6 +70,7 @@ private:
 	void create(std::vector<std::string>& text);
 	void erase(int index);
 	void translate(const std::vector<std::string>& text);
+	void withIn(const std::vector<std::string>& text);
 public:
 	UserInterface() = default;
 	~UserInterface();

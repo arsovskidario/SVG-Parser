@@ -13,6 +13,7 @@ public:
 		std::string fill, std::string stroke);
 
 	void translate(double deltaX, double deltaY) override;
+	void withIn(double startHeight, double endHeight, double startWidth, double endWidth) override;
 	void print() override;
 	std::string toXml() override;
 };

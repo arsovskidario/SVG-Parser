@@ -1,6 +1,7 @@
 #include"UserInterface.h"
 #include "Ellipse.h"
 #include <iostream>
+#include<sstream>
 
 UserInterface::~UserInterface()
 {
@@ -126,6 +127,54 @@ void UserInterface::translate(const std::vector<std::string>& text)
 	}
 }
 
+void UserInterface::withIn(const std::vector<std::string>& text)
+{
+	const std::string identifier = text[0];
+	std::vector<std::string> shortText = text;
+	shortText.erase(shortText.begin());
+	const int TEXT_SIZE = text.size();
+	if(identifier=="rectangle")
+	{
+		const int RECTANGLE_SIZE = 4; //max attributes entered
+		if(TEXT_SIZE==RECTANGLE_SIZE)
+		{
+			double startWidth = std::stod(shortText[0]);
+			double startHeight = std::stod(shortText[1]);
+			double endWidth = std::stod(shortText[2]);
+			double endHeight = std::stod(shortText[3]);
+			svg->withIn(startHeight, endHeight, startWidth, endWidth);
+		}else std::cerr << "Enter a valid within format! \n";
+	}
+	else if(identifier=="circle")
+	{
+		const int CIRCLE_SIZE = 3;
+		if(TEXT_SIZE==CIRCLE_SIZE)
+		{
+			double startWidth = std::stod(shortText[0]);
+			double startHeight = std::stod(shortText[1]);
+			double endWidth = std::stod(shortText[2]);
+			double endHeight = std::stod(shortText[2]);
+			svg->withIn(startHeight, endHeight, startWidth, endWidth);
+		}else std::cerr << "Enter a valid within format! \n";
+	}
+	else if(identifier=="ellipse")
+	{
+		const int ELLIPSE_SIZE = 4;
+		if(TEXT_SIZE==ELLIPSE_SIZE)
+		{
+			//TODO THINK HOW TO WITHIN ELLIPSE
+			double startWidth = std::stod(shortText[0]);
+			double startHeight = std::stod(shortText[1]);
+			double endWidth = std::stod(shortText[2]);
+			double endHeight = std::stod(shortText[3]);
+			svg->withIn(startHeight, endHeight, startWidth, endWidth);
+		}
+		else std::cerr << "Enter a valid within format! \n";
+	}
+	else
+		 std::cerr << "Enter a shape ! \n";
+}
+
 void UserInterface::executeCommand(std::vector<std::string> params)
 {
 	const std::string commandName = params[0];
@@ -203,6 +252,15 @@ void UserInterface::executeCommand(std::vector<std::string> params)
 		{
 			params.erase(params.begin());
 			create(params);
+		}
+		else std::cout << noOpenFileMessage << std::endl;
+	}
+	else if(commandName==COMMANDS.WITH_IN)
+	{
+		if(isFileOpen())
+		{
+			params.erase(params.begin());
+			withIn(params);
 		}
 		else std::cout << noOpenFileMessage << std::endl;
 	}

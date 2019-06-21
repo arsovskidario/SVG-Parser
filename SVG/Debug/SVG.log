@@ -1,4 +1,32 @@
-﻿  UserInterface.cpp
-c:\dev\object oriented programming\project\svg\userinterface.cpp(408): warning C4018: '<': signed/unsigned mismatch
-c:\dev\object oriented programming\project\svg\userinterface.cpp(417): warning C4018: '<': signed/unsigned mismatch
-  SVG.vcxproj -> C:\Dev\Object Oriented Programming\Project\SVG\Debug\SVG.exe
+﻿  Circle.cpp
+  Ellipse.cpp
+  Main.cpp
+  Shape.cpp
+  Rectangle.cpp
+  SVG.cpp
+c:\dev\object oriented programming\project\svg\svg.cpp(92): error C2144: syntax error: 'double' should be preceded by ')'
+c:\dev\object oriented programming\project\svg\svg.cpp(92): error C2660: 'Shape::withIn': function does not take 0 arguments
+  c:\dev\object oriented programming\project\svg\shape.h(28): note: see declaration of 'Shape::withIn'
+c:\dev\object oriented programming\project\svg\svg.cpp(92): error C2144: syntax error: 'double' should be preceded by ';'
+c:\dev\object oriented programming\project\svg\svg.cpp(92): error C2062: type 'double' unexpected
+c:\dev\object oriented programming\project\svg\svg.cpp(92): error C2059: syntax error: ')'
+  UserInterface.cpp
+c:\dev\object oriented programming\project\svg\userinterface.cpp(409): warning C4018: '<': signed/unsigned mismatch
+c:\dev\object oriented programming\project\svg\userinterface.cpp(418): warning C4018: '<': signed/unsigned mismatch
+c:\dev\object oriented programming\project\svg\userinterface.cpp(434): error C2259: 'Circle': cannot instantiate abstract class
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(434): note: due to following members:
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(434): note: 'void Shape::withIn(double,double,double,double)': is abstract
+  c:\dev\object oriented programming\project\svg\shape.h(28): note: see declaration of 'Shape::withIn'
+c:\dev\object oriented programming\project\svg\userinterface.cpp(464): error C2259: 'Ellipse': cannot instantiate abstract class
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(464): note: due to following members:
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(464): note: 'void Shape::withIn(double,double,double,double)': is abstract
+  c:\dev\object oriented programming\project\svg\shape.h(28): note: see declaration of 'Shape::withIn'
+c:\dev\object oriented programming\project\svg\userinterface.cpp(561): error C2259: 'Circle': cannot instantiate abstract class
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(561): note: due to following members:
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(561): note: 'void Shape::withIn(double,double,double,double)': is abstract
+  c:\dev\object oriented programming\project\svg\shape.h(28): note: see declaration of 'Shape::withIn'
+c:\dev\object oriented programming\project\svg\userinterface.cpp(666): error C2259: 'Ellipse': cannot instantiate abstract class
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(666): note: due to following members:
+  c:\dev\object oriented programming\project\svg\userinterface.cpp(666): note: 'void Shape::withIn(double,double,double,double)': is abstract
+  c:\dev\object oriented programming\project\svg\shape.h(28): note: see declaration of 'Shape::withIn'
+  Generating Code...
