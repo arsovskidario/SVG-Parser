@@ -132,7 +132,7 @@ void UserInterface::withIn(const std::vector<std::string>& text)
 	const std::string identifier = text[0];
 	std::vector<std::string> shortText = text;
 	shortText.erase(shortText.begin());
-	const int TEXT_SIZE = text.size();
+	const int TEXT_SIZE = shortText.size();
 	if(identifier=="rectangle")
 	{
 		const int RECTANGLE_SIZE = 4; //max attributes entered
@@ -150,10 +150,11 @@ void UserInterface::withIn(const std::vector<std::string>& text)
 		const int CIRCLE_SIZE = 3;
 		if(TEXT_SIZE==CIRCLE_SIZE)
 		{
+			//TODO find minus height and plus 
 			double startWidth = std::stod(shortText[0]);
 			double startHeight = std::stod(shortText[1]);
-			double endWidth = std::stod(shortText[2]);
-			double endHeight = std::stod(shortText[2]);
+			double endWidth = std::stod(shortText[2]); // this is the radius of the circle 
+			double endHeight = std::stod(shortText[2]);// this is the radius of the circle 
 			svg->withIn(startHeight, endHeight, startWidth, endWidth);
 		}else std::cerr << "Enter a valid within format! \n";
 	}
@@ -266,7 +267,7 @@ void UserInterface::executeCommand(std::vector<std::string> params)
 	}
 	else
 	{
-		std::cout << "Invalid command.";
+		std::cout << "Invalid command. \n";
 	}
 
 }

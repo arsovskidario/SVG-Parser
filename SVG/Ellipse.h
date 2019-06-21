@@ -9,14 +9,18 @@ private:
 	double radiusY;
 	std::string fill;
 	std::string stroke;
+	std::vector<Point*>edges;
 
 public:
 	Ellipse(double centerX, double centerY, 
 		double radiusX, double radiusY,
 		std::string fill, std::string stroke);
 
+	void createEdges();
+	bool checkWithIn(double startHeight, double endHeight, double startWidth, double endWidth);
+	void withIn(double startHeight, double endHeight, double startWidth, double endWidth)override;
+
 	void translate(double deltaX, double deltaY) override;
-	void withIn(double startHeight, double endHeight, double startWidth, double endWidth) override;
 	void print() override;
 	double getRadiusX()const;
 	double getRadiusY()const;

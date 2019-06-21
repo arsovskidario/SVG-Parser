@@ -34,10 +34,12 @@ bool Rectangle::checkWithIn(double startHeight, double endHeight, double startWi
 
 void Rectangle::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
 {
+	int numberOfMatches = 0;
 	if(checkWithIn(startHeight,endHeight,startWidth,endWidth))
 	{
 		print();
 	}
+	if (numberOfMatches == 0) std::cout << "No figures are located within the figure ! \n";
 }
 
 void Rectangle::print()
