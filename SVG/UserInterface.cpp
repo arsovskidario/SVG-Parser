@@ -475,7 +475,7 @@ Circle* UserInterface::newCircle(std::vector<std::string> text)
 		fill = text[3];
 		std::string stroke;
 		stroke = text[4];
-		Circle* circle = new Circle(center_x, center_y, radius, stroke, fill);
+		Circle* circle = new Circle(center_x, center_y, radius, fill, stroke);
 		return circle;
 }
 
