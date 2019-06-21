@@ -32,14 +32,15 @@ bool Rectangle::checkWithIn(double startHeight, double endHeight, double startWi
 	return false;
 }
 
-void Rectangle::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
+double Rectangle::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
 {
-	int numberOfMatches = 0;
+	double numberOfMatches = 0;
 	if(checkWithIn(startHeight,endHeight,startWidth,endWidth))
 	{
 		print();
+		numberOfMatches++;
 	}
-	if (numberOfMatches == 0) std::cout << "No figures are located within the figure ! \n";
+	return numberOfMatches;
 }
 
 void Rectangle::print()

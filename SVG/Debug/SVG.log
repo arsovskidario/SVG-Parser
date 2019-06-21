@@ -1,6 +1,9 @@
 ﻿  Circle.cpp
+  Ellipse.cpp
   Main.cpp
+  Rectangle.cpp
   SVG.cpp
+c:\dev\object oriented programming\project\svg\svg.cpp(93): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
   UserInterface.cpp
 c:\dev\object oriented programming\project\svg\userinterface.cpp(467): warning C4018: '<': signed/unsigned mismatch
 c:\dev\object oriented programming\project\svg\userinterface.cpp(476): warning C4018: '<': signed/unsigned mismatch

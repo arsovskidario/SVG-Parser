@@ -1,7 +1,7 @@
 #include"Ellipse.h"
 #include <sstream>
 #include <iostream>
-
+#include<cmath>
 void Ellipse::setRadiusX(double radiusX)
 {
 	this->radiusX = radiusX;
@@ -47,14 +47,16 @@ void Ellipse::createEdges()
 	edges.push_back(D);
 }
 
-bool Ellipse::checkWithIn(double startHeight, double endHeight, double startWidth, double endWidth)
+bool Ellipse::checkWithIn(double centerX, double centerY, double radiusX, double radiusY)
 {
 	for (Point* edge : edges) //check for all points 
 	{
-		if ((edge->x > startWidth) && (edge->x < endWidth) && (edge->y > startHeight) && (edge->x < endHeight))
-		{
-			return true;
-		}
+		//standard ellipse equation
+		double distanceFromCenterX = pow(edge->x - centerX, 2) / pow(radiusX, 2);
+		double distanceFromCenterY = pow(edge->y - centerY, 2) / pow(radiusY, 2);
+		double distanceFromCrenter = distanceFromCenterX + distanceFromCenterY;
+		return (distanceFromCrenter <= 1);
+
 	}
 	return false;
 }
@@ -75,14 +77,15 @@ void Ellipse::translate(double deltaX, double deltaY)
 	this->centerY += deltaY;
 }
 
-void Ellipse::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
+double Ellipse::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
 {
-	int numberOfMatches = 0;
+	double numberOfMatches = 0;
 	if (checkWithIn(startHeight, endHeight, startWidth, endWidth))
 	{
 		print();
+		numberOfMatches++;
 	}
-	if (numberOfMatches == 0) std::cout << "No figures are located within the figure ! \n";
+	return numberOfMatches;
 }
 
 void Ellipse::print()

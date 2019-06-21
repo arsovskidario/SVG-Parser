@@ -25,6 +25,6 @@ public:
 	virtual ~Shape() = default;
 	virtual void print() = 0;
 	virtual void translate(double deltaX, double deltaY) = 0;
-	virtual void withIn(double startHeight, double endHeight, double startWidth, double endWidth) = 0;
+	virtual double withIn(double startHeight, double endHeight, double startWidth, double endWidth) = 0;
 	virtual std::string toXml() = 0;
 };

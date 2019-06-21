@@ -87,10 +87,12 @@ void SVG::print()
 
 void SVG::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
 {
+	int  numberOfMatches = 0;
 	for(Shape* shape:shapes)
 	{
-		shape->withIn(startHeight,  endHeight, startWidth,  endWidth);
+		numberOfMatches+=shape->withIn(startHeight,  endHeight, startWidth,  endWidth);
 	}
+	if (numberOfMatches == 0) std::cout << "No figures are located within the figure ! \n";
 }
 
 void SVG::exit()

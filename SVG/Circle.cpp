@@ -47,18 +47,18 @@ void Circle::createEdges()
 	edges.push_back(D);
 }
 
-void Circle::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
+double Circle::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
 {
 	double radius = endHeight;
 	double centerX = startWidth;
 	double centerY = startHeight;
-	int numberOfMatches = 0;
+	double numberOfMatches = 0;
 	if (checkWithIn(centerX,centerY, radius))
 	{
 		print();
 		numberOfMatches++;
 	}
-	if (numberOfMatches == 0) std::cout << "No figures are located within the figure ! \n";
+	return numberOfMatches;
 }
 
 void Circle::print()

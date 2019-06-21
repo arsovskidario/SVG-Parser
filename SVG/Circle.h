@@ -17,7 +17,7 @@ public:
 
 	void translate(double deltaX, double deltaY) override;
 	void createEdges();
-	void withIn(double startHeight, double endHeight, double startWidth, double endWidth) override;
+	double withIn(double startHeight, double endHeight, double startWidth, double endWidth) override;
 	void print() override;
 	std::string toXml() override;
 };
