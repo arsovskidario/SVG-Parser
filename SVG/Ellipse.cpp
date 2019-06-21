@@ -17,7 +17,7 @@ std::string Ellipse::toXml()
 	std::ostringstream xml_stream;
 	xml_stream << "<ellipse cx=\" " << centerX << "\"cy=\" " << centerY <<
 		"\"rx=\" " << radiusX << "\"ry=\" " << radiusY <<
-		"\" fill=\" " << fill << "\" stroke=\" " << stroke;
+		"\" fill=\" " << fill << "\" stroke=\" " << stroke<< " />";
 
 	return xml_stream.str();
 }

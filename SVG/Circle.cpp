@@ -73,7 +73,7 @@ std::string Circle::toXml()
 
 	xml_stream << "<circle cx=\" " << centerX << "\"cy=\" " << centerY <<
 		"\"r=\" " << radius <<
-		"\" fill=\" " << fill << "\" stroke=\" " << stroke;
+		"\" fill=\" " << fill << "\" stroke=\" " << stroke<< " />";
 
 	return xml_stream.str();
 }

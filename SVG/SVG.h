@@ -22,8 +22,10 @@ public:
 	void translateEllipse(double deltaX, double deltaY);
 	void translateShapes(double deltaX, double deltaY);
 	void erase(int index);
-	void create(Shape* shape);
+	void create(Shape* shape,std::string identifier);
 	void print();
+	void createFile( std::ostream & outputFile, const std::vector<Shape*>& shapes);
+	void save(std::string path, std::ifstream& inputFile,bool saveType);
 	void withIn(double startHeight, double endHeight,
 		        double startWidth, double endWidth);
 	static void exit();

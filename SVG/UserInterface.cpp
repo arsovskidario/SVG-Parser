@@ -366,14 +366,10 @@ void UserInterface::close()
 
 void UserInterface::save()
 {
-	//TODO create a function that converts all the vector elements to text exampe:
-	// <rect xy"(insert xy) ,then add it to a open file line 
-	//you can delete the whole file and then replace all the text with the objects
+	bool save = true;
 	if (inputFile.is_open())
 	{
-		//need to store stuff into a file first 
-		std::ofstream saveFile(getPath()); //save file to same directory
-		std::cout << "Successfully saved another file \n";
+		svg->save(getPath(),inputFile,save);
 	}
 	else
 	{
@@ -383,20 +379,10 @@ void UserInterface::save()
 
 void UserInterface::saveAs(std::string path)
 {
+	bool save = false;
 	if (inputFile.is_open())
 	{
-		std::string inputPath;
-		std::cout << "Enter the path you wish to save your file : \n";
-		std::getline(std::cin, inputPath);
-		std::ofstream saveFile(inputPath);
-		if (saveFile.fail())
-		{
-			std::cerr << "You entered a invalid path! \n";
-		}
-		else
-		{
-			std::cout << "Successfully saved another file \n";
-		}
+		svg->save(path, inputFile,save);
 	}
 	else
 	{
@@ -418,21 +404,21 @@ void UserInterface::create(std::vector<std::string>& text)
 	{
 		const int CIRCLE_ATTRIBUTES = 5; //max number of attributes
 	   if(TEXT_SIZE==CIRCLE_ATTRIBUTES)
-		svg->create(newCircle(text));
+		svg->create(newCircle(text),identifier);
 	   else std::cerr << "Enter a valid create format! \n";
 	}
 	else if(identifier=="rectangle")
 	{
 		const int RECTANGLE_ATTRIBUTES = 6; //max number of attributes
 		if(TEXT_SIZE==RECTANGLE_ATTRIBUTES)
-		svg->create(newRectangle(text));
+		svg->create(newRectangle(text),identifier);
 		else std::cerr << "Enter a valid create format! \n";
 	}
 	else if(identifier=="ellipse")
 	{
 	   const int ELLIPSE_ATTRIBUTES = 6; //max number of attributes
 	   if(TEXT_SIZE==ELLIPSE_ATTRIBUTES)
-		svg->create(newEllipse(text));
+		svg->create(newEllipse(text),identifier);
 	   else std::cerr << "Enter a valid create format! \n";
 	}
 	else std::cerr << "Enter a shape ! \n";

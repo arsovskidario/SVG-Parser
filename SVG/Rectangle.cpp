@@ -55,7 +55,7 @@ std::string Rectangle::toXml()
 
 	xml_stream << "<rect x=\" " << x << "\"y=\" " << y <<
 		"\"width=\"" << width << "\" height=\" " << height
-		<< "\" fill=\" " << fill << "\" stroke=\" " + stroke;
+		<< "\" fill=\" " << fill << "\" stroke=\" " + stroke<<" />";
 
 	return xml_stream.str();
 }
