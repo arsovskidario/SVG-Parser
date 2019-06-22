@@ -1,3 +1,5 @@
+//made it just in case 
+//the project only need rectangle and circle as the region
 #pragma once
 #include"Region.h"
 class EllipseRegion :public Region
