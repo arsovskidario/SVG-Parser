@@ -157,19 +157,6 @@ void UserInterface::withIn(const std::vector<std::string>& text)
 			svg->withIn(startHeight, endHeight, startWidth, endWidth);
 		}else std::cerr << "Enter a valid within format! \n";
 	}
-	else if(identifier=="ellipse")
-	{
-		const int ELLIPSE_SIZE = 4;
-		if(TEXT_SIZE==ELLIPSE_SIZE)
-		{
-			double startWidth = std::stod(shortText[0]);
-			double startHeight = std::stod(shortText[1]);
-			double endWidth = std::stod(shortText[2]);
-			double endHeight = std::stod(shortText[3]);
-			svg->withIn(startHeight, endHeight, startWidth, endWidth);
-		}
-		else std::cerr << "Enter a valid within format! \n";
-	}
 	else
 		 std::cerr << "Enter a shape ! \n";
 }
