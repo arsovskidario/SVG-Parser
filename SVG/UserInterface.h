@@ -70,6 +70,10 @@ private:
 	void create(std::vector<std::string>& text);
 	void erase(int index);
 	void translate(const std::vector<std::string>& text);
+	// Every point(edge) of a give figure must belong to a specific
+	// region(given by the figure entered) in order for it to be within a figure ;
+	// that is if you have  circle 5 5 10 it doesn't belong to a rectangle 0 0 30 30
+	// because of 2 of the points don't belong in the rectangle region
 	void withIn(const std::vector<std::string>& text);
 public:
 	UserInterface() = default;

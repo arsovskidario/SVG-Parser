@@ -3,6 +3,8 @@
 #include<map>
 #include<vector>
 #include"Shape.h"
+#include "Region.h"
+
 class SVG
 {
 private:
@@ -26,8 +28,11 @@ public:
 	void print();
 	void createFile( std::ostream & outputFile, const std::vector<Shape*>& shapes);
 	void save(std::string path, std::ifstream& inputFile,bool saveType);
-	void withIn(double startHeight, double endHeight,
-		        double startWidth, double endWidth);
+	bool within(Region* region);
+	void withinCircle(double centerX, double centerY, double radius);
+	void withinRectangle(double x, double y, double width, double height);
+	//void withIn(double startHeight, double endHeight,
+		//        double startWidth, double endWidth);
 	static void exit();
 	SVG() = default;
 	~SVG();

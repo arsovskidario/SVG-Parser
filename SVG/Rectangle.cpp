@@ -20,28 +20,6 @@ void Rectangle::createEdges()
 	edges.push_back(D);
 }
 
-bool Rectangle::checkWithIn(double startHeight, double endHeight, double startWidth, double endWidth)
-{
-	for (Point* edge : edges) //check for all points 
-	{
-		if((edge->x > startWidth) && (edge->x < endWidth) && (edge->y > startHeight) && (edge->x < endHeight))
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-double Rectangle::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
-{
-	double numberOfMatches = 0;
-	if(checkWithIn(startHeight,endHeight,startWidth,endWidth))
-	{
-		print();
-		numberOfMatches++;
-	}
-	return numberOfMatches;
-}
 
 void Rectangle::print()
 {
@@ -68,6 +46,11 @@ void Rectangle::setWidth(double newWidth)
 void Rectangle::setHeight(double newHeight)
 {
 	this->height = newHeight;
+}
+
+std::vector<Point*> Rectangle::getPoints() const
+{
+	return edges;
 }
 
 Rectangle::Rectangle(double x, double y,

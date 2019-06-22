@@ -1,5 +1,6 @@
 #pragma once
 #include"Shape.h"
+#include "Point.h"
 
 class Rectangle :public Shape
 {
@@ -21,10 +22,9 @@ public:
 	void setWidth(double newWidth);
 	void setHeight(double newHeight);
 
+	std::vector<Point*> getPoints() const override;
 	void translate(double deltaX, double deltaY) override;
 	void createEdges();
-	bool checkWithIn(double startHeight, double endHeight, double startWidth, double endWidth);
-	double withIn(double startHeight, double endHeight, double startWidth, double endWidth)override;
 	void print() override;
 	std::string toXml() override;
 };

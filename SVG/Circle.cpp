@@ -18,16 +18,6 @@ double Circle::getRadius() const
 	return this->radius;
 }
 
-bool Circle::checkWithIn(double centerX,double centerY, double radius)
-{
-	for (Point* edge : edges) //check for all points 
-	{
-		const double distanceFromCenterSquared =
-			pow(edge->x - centerX, 2) + pow(edge->y - centerY, 2);
-		return distanceFromCenterSquared <= pow(radius, 2);
-	}
-	return false;
-}
 
 void Circle::translate(double deltaX, double deltaY)
 {
@@ -47,19 +37,11 @@ void Circle::createEdges()
 	edges.push_back(D);
 }
 
-double Circle::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
+std::vector<Point*> Circle::getPoints() const
 {
-	double radius = endHeight;
-	double centerX = startWidth;
-	double centerY = startHeight;
-	double numberOfMatches = 0;
-	if (checkWithIn(centerX,centerY, radius))
-	{
-		print();
-		numberOfMatches++;
-	}
-	return numberOfMatches;
+	return edges;
 }
+
 
 void Circle::print()
 {

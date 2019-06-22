@@ -1,5 +1,7 @@
 #pragma once
 #include"Shape.h"
+#include "Point.h"
+
 class Ellipse :public Shape
 {
 private:
@@ -17,9 +19,8 @@ public:
 		std::string fill, std::string stroke);
 
 	void createEdges();
-	bool checkWithIn(double startHeight, double endHeight, double startWidth, double endWidth);
-	double withIn(double startHeight, double endHeight, double startWidth, double endWidth)override;
 
+	std::vector<Point*> getPoints()const override;
 	void translate(double deltaX, double deltaY) override;
 	void print() override;
 	double getRadiusX()const;

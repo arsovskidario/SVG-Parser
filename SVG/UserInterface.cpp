@@ -138,11 +138,11 @@ void UserInterface::withIn(const std::vector<std::string>& text)
 		const int RECTANGLE_SIZE = 4; //max attributes entered
 		if(TEXT_SIZE==RECTANGLE_SIZE)
 		{
-			double startWidth = std::stod(shortText[0]);
-			double startHeight = std::stod(shortText[1]);
-			double endWidth = std::stod(shortText[2]);
-			double endHeight = std::stod(shortText[3]);
-			svg->withIn(startHeight, endHeight, startWidth, endWidth);
+			double x = std::stod(shortText[0]);
+			double y = std::stod(shortText[1]);
+			double width = std::stod(shortText[2]);
+			double height = std::stod(shortText[3]);
+			svg->withinRectangle(x, y, width, height);
 		}else std::cerr << "Enter a valid within format! \n";
 	}
 	else if(identifier=="circle")
@@ -150,11 +150,10 @@ void UserInterface::withIn(const std::vector<std::string>& text)
 		const int CIRCLE_SIZE = 3;
 		if(TEXT_SIZE==CIRCLE_SIZE)
 		{
-			double startWidth = std::stod(shortText[0]);
-			double startHeight = std::stod(shortText[1]);
-			double endWidth = std::stod(shortText[2]); // this is the radius of the circle 
-			double endHeight = std::stod(shortText[2]);// this is the radius of the circle 
-			svg->withIn(startHeight, endHeight, startWidth, endWidth);
+			double centerX = std::stod(shortText[0]);
+			double centerY = std::stod(shortText[1]);
+			double radius = std::stod(shortText[2]); // this is the radius of the circle 
+			svg->withinCircle(centerX,centerY,radius);
 		}else std::cerr << "Enter a valid within format! \n";
 	}
 	else

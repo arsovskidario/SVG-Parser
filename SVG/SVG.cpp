@@ -6,6 +6,8 @@
 #include <iostream>
 #include<fstream>
 #include<ostream>
+#include "CircleRegion.h"
+#include "RectangleRegion.h"
 
 SVG::~SVG()
 {
@@ -124,7 +126,46 @@ void SVG::save(std::string path, std::ifstream& inputFile,bool saveType)
 	std::cout << "Successfully saved the changes \n";
 }
 
-void SVG::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
+bool SVG::within(Region* region)
+{
+	bool matchesFound = false;
+	for(Shape* shape:shapes)
+	{
+		bool isInRegion = true;
+		std::vector<Point*> points = shape->getPoints();
+		for(Point* point:points)
+		{
+			if(!region->containsPoint(*point))
+			{
+				isInRegion = false;
+				break;
+			}
+		}
+		if(isInRegion)
+		{
+			shape->print();
+			matchesFound = true;
+		}
+	}
+	return matchesFound;
+}
+
+void SVG::withinCircle(double centerX, double centerY, double radius)
+{
+	CircleRegion* circleRegion=new CircleRegion(centerX, centerY, radius);
+	if (!within(circleRegion))
+		std::cout << "No figures found in this Circle region ! \n";
+}
+
+void SVG::withinRectangle(double x, double y, double width, double height)
+{
+	RectangleRegion * rectangleRegion = new RectangleRegion(x, y, width, height);
+	if (!within(rectangleRegion))
+		std::cout << "No figures found in this Rectangle region ! \n";
+}
+
+
+/*void SVG::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
 {
 	double  numberOfMatches = 0;
 	for(Shape* shape:shapes)
@@ -132,7 +173,7 @@ void SVG::withIn(double startHeight, double endHeight, double startWidth, double
 		numberOfMatches+=shape->withIn(startHeight,  endHeight, startWidth,  endWidth);
 	}
 	if (numberOfMatches == 0) std::cout << "No figures are located within the figure ! \n";
-}
+}*/
 
 void SVG::exit()
 {
