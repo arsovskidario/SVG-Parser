@@ -100,7 +100,7 @@ void UserInterface::translate(const std::vector<std::string>& text)
 	 const std::string identifier = text[0];
 	 std::stringstream textStream;
 	 std::vector < std::string> textPassed=text;
-	std::map<std::string, std::string> attributes;
+	 std::map<std::string, std::string> attributes;
 	if(identifier=="circle")
 	{
 		std::string parsedText = shapeStream(textStream, textPassed);
@@ -230,7 +230,7 @@ void UserInterface::executeCommand(std::vector<std::string> params)
 	}
 	else if (commandName == COMMANDS.ERASE) 
 	{
-		if (isFileOpen())
+		if (isFileOpen()) 
 		{
 			if (params.size() == 2 && !params[1].empty())
 			{
