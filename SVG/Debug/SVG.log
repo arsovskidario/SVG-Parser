@@ -1,7 +1,7 @@
 ﻿  Main.cpp
   SVG.cpp
   UserInterface.cpp
-c:\dev\object oriented programming\project\svg\userinterface.cpp(453): warning C4018: '<': signed/unsigned mismatch
-c:\dev\object oriented programming\project\svg\userinterface.cpp(462): warning C4018: '<': signed/unsigned mismatch
+c:\dev\object oriented programming\project\svg\userinterface.cpp(467): warning C4018: '<': signed/unsigned mismatch
+c:\dev\object oriented programming\project\svg\userinterface.cpp(476): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   SVG.vcxproj -> C:\Dev\Object Oriented Programming\Project\SVG\Debug\SVG.exe

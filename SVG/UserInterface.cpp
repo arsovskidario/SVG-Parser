@@ -226,17 +226,26 @@ void UserInterface::executeCommand(std::vector<std::string> params)
 			std::cout << noOpenFileMessage << std::endl;
 		}
 	}
-	else if(commandName==COMMANDS.EXIT)
+	else if (commandName == COMMANDS.EXIT)
 	{
 		exit();
 	}
-	else if(commandName==COMMANDS.ERASE)
+	else if (commandName == COMMANDS.ERASE) 
 	{
-	   if(isFileOpen()){
-		const int index = std::stoi(params[1]);
-		erase(index);
-	   }
-	   else std::cout << noOpenFileMessage << std::endl;
+		if (isFileOpen())
+		{
+			if (params.size() == 2 && !params[1].empty())
+			{
+				const int index = std::stoi(params[1]);
+				if (index >= 0)
+					erase(index);
+				else std::cout << "No elements at that position ! \n";
+			}
+			else std::cout << "Index needed ! \n";
+
+		}
+		else std::cout << noOpenFileMessage << std::endl;
+
 	}
 	else if (commandName==COMMANDS.TRANSLATE)
 	{
@@ -358,6 +367,7 @@ void UserInterface::close()
 	if (inputFile.is_open())
 	{
 		inputFile.close();
+		svg = nullptr;
 		std::cout << "Successfully closed file! \n";
 	}
 	else
@@ -426,7 +436,11 @@ void UserInterface::create(std::vector<std::string>& text)
 
 void UserInterface::erase(const int index)
 {
-	svg->erase(index);
+   if(inputFile.is_open())
+   {
+	   svg->erase(index);
+   }
+   else std::cerr << "You didn't open a file ! \n";
 }
 
 std::map<std::string, std::string> UserInterface::parseTranslation(const std::string text)

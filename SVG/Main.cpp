@@ -7,7 +7,6 @@ void listCommands();
 int main()
 {
 	listCommands();
-	std::string userInput;
 	UserInterface engine;
 	engine.start();
 }

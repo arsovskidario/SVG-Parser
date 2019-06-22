@@ -96,6 +96,7 @@ void SVG::print()
 	}
 }
 
+
 void SVG::createFile(std::ostream & outputFile, const std::vector<Shape*>& shapes)
 {
     std::string xmlTag = "<?xml version=\"1.0\" standalone=\"no\"?> \n";
