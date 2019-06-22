@@ -150,7 +150,6 @@ void UserInterface::withIn(const std::vector<std::string>& text)
 		const int CIRCLE_SIZE = 3;
 		if(TEXT_SIZE==CIRCLE_SIZE)
 		{
-			//TODO find minus height and plus 
 			double startWidth = std::stod(shortText[0]);
 			double startHeight = std::stod(shortText[1]);
 			double endWidth = std::stod(shortText[2]); // this is the radius of the circle 
@@ -163,7 +162,6 @@ void UserInterface::withIn(const std::vector<std::string>& text)
 		const int ELLIPSE_SIZE = 4;
 		if(TEXT_SIZE==ELLIPSE_SIZE)
 		{
-			//TODO THINK HOW TO WITHIN ELLIPSE
 			double startWidth = std::stod(shortText[0]);
 			double startHeight = std::stod(shortText[1]);
 			double endWidth = std::stod(shortText[2]);
@@ -236,12 +234,18 @@ void UserInterface::executeCommand(std::vector<std::string> params)
 		{
 			if (params.size() == 2 && !params[1].empty())
 			{
-				const int index = std::stoi(params[1]);
-				if (index >= 0)
-					erase(index);
-				else std::cout << "No elements at that position ! \n";
+			  std::string value = params[1];
+				if (isdigit(value[0]))
+				{
+					const int index = std::stoi(value);
+					if (index >= 0)
+						erase(index);
+					else std::cout << "No elements at that position ! \n";
+				}
+				else std::cout << "Enter a valid integer ! \n";
 			}
 			else std::cout << "Index needed ! \n";
+		
 
 		}
 		else std::cout << noOpenFileMessage << std::endl;
