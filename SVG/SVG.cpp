@@ -165,16 +165,6 @@ void SVG::withinRectangle(double x, double y, double width, double height)
 }
 
 
-/*void SVG::withIn(double startHeight, double endHeight, double startWidth, double endWidth)
-{
-	double  numberOfMatches = 0;
-	for(Shape* shape:shapes)
-	{
-		numberOfMatches+=shape->withIn(startHeight,  endHeight, startWidth,  endWidth);
-	}
-	if (numberOfMatches == 0) std::cout << "No figures are located within the figure ! \n";
-}*/
-
 void SVG::exit()
 {
 	std::cout << "Exiting the program ... \n";

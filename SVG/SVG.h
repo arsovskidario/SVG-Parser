@@ -31,8 +31,6 @@ public:
 	bool within(Region* region);
 	void withinCircle(double centerX, double centerY, double radius);
 	void withinRectangle(double x, double y, double width, double height);
-	//void withIn(double startHeight, double endHeight,
-		//        double startWidth, double endWidth);
 	static void exit();
 	SVG() = default;
 	~SVG();

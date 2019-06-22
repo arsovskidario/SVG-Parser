@@ -2,6 +2,7 @@
  * 1.for opening a file you need to use the exact same path the file is located on your machine
  * examples : C:\Dev\shapes.txt  C:\Users\Name\Desktop\shapes.svg 
  * so the full command will be open C:\Dev\shapes.txt
+ *  you must close a file before you open a new one !!!
  * 2. for saving the file no path is required ,but
  * for using saveAs you need to specify a path as the one shown above.
  * example for saveAs : saveAs C:\Users\Name\Desktop\shapes.svg
