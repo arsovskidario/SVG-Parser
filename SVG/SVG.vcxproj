@@ -128,7 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircleRegion.h" />
-    <ClInclude Include="EllipseRegion.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RectangleRegion.h" />
     <ClInclude Include="Shape.h" />

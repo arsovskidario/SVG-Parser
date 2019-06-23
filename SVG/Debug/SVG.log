@@ -1,11 +1,4 @@
-﻿  Circle.cpp
-  Ellipse.cpp
-  Main.cpp
-  Rectangle.cpp
-  Region.h
-  SVG.cpp
-  UserInterface.cpp
-c:\dev\object oriented programming\project\svg\userinterface.cpp(457): warning C4018: '<': signed/unsigned mismatch
-c:\dev\object oriented programming\project\svg\userinterface.cpp(466): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+﻿  UserInterface.cpp
+c:\dev\object oriented programming\project\svg\userinterface.cpp(465): warning C4018: '<': signed/unsigned mismatch
+c:\dev\object oriented programming\project\svg\userinterface.cpp(474): warning C4018: '<': signed/unsigned mismatch
   SVG.vcxproj -> C:\Dev\Object Oriented Programming\Project\SVG\Debug\SVG.exe

@@ -62,9 +62,6 @@
     <ClInclude Include="CircleRegion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EllipseRegion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RectangleRegion.h">
       <Filter>Header Files</Filter>
     </ClInclude>

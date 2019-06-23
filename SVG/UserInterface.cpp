@@ -97,34 +97,42 @@ void UserInterface::translateShapes(const std::map<std::string, std::string>& ma
 
 void UserInterface::translate(const std::vector<std::string>& text)
 {
-	 const std::string identifier = text[0];
-	 std::stringstream textStream;
-	 std::vector < std::string> textPassed=text;
-	 std::map<std::string, std::string> attributes;
-	if(identifier=="circle")
-	{
-		std::string parsedText = shapeStream(textStream, textPassed);
-		attributes = parseTranslation(parsedText);
-		translateCircle(attributes);
+	if (!text.empty()) {
+		const std::string identifier = text[0];
+		std::stringstream textStream;
+		std::vector < std::string> textPassed = text;
+		std::map<std::string, std::string> attributes;
+		if (identifier == "circle")
+		{
+			std::string parsedText = shapeStream(textStream, textPassed);
+			attributes = parseTranslation(parsedText);
+			translateCircle(attributes);
+		}
+		else if (identifier == "rectangle")
+		{
+			std::string parsedText = shapeStream(textStream, textPassed);
+			attributes = parseTranslation(textStream.str());
+			translateRectangle(attributes);
+		}
+		else if (identifier == "ellipse")
+		{
+			std::string parsedText = shapeStream(textStream, textPassed);
+			attributes = parseTranslation(textStream.str());
+			translateEllipse(attributes);
+		}
+		else if (identifier.find("horizontal") != std::string::npos ||
+				identifier.find("vertical") != std::string::npos)
+		{
+			std::string parsedText = normalStream(textStream, textPassed);
+			attributes = parseTranslation(textStream.str());
+			translateShapes(attributes);
+		}
+		else
+		{
+			std::cout << "Enter a valid command format ! \n";
+		}
 	}
-	else if(identifier=="rectangle")
-	{
-		std::string parsedText = shapeStream(textStream, textPassed);
-		attributes = parseTranslation(textStream.str());
-		translateRectangle(attributes);
-	}
-	else if(identifier=="ellipse")
-	{
-		std::string parsedText = shapeStream(textStream, textPassed);
-		attributes = parseTranslation(textStream.str());
-		translateEllipse(attributes);
-	}
-	else
-	{
-		std::string parsedText = normalStream(textStream, textPassed);
-		attributes = parseTranslation(textStream.str());
-		translateShapes(attributes);
-	}
+	else std::cout << "Enter a valid command format ! \n";
 }
 
 void UserInterface::withIn(const std::vector<std::string>& text)
